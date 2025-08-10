@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML: From Zero to Advanced</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #fff;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #3498db, #2ecc71);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .author {
+            margin-top: 15px;
+            font-size: 1.1rem;
+            color: #3498db;
+        }
+
+        .content-section {
+            padding: 40px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            color: #2ecc71;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #3498db;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-title i {
+            margin-right: 12px;
+            font-size: 1.5rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        ul {
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        li:before {
+            content: "•";
+            color: #2ecc71;
+            font-weight: bold;
+            position: absolute;
+            left: -20px;
+        }
+
+        .code-block {
+            background: #2c3e50;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            border-left: 4px solid #3498db;
+        }
+
+        .tag {
+            color: #f92672;
+        }
+
+        .attr {
+            color: #a6e22e;
+        }
+
+        .value {
+            color: #fd971f;
+        }
+
+        .comment {
+            color: #75715e;
+        }
+
+        .level-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .level {
+            flex: 1;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            margin: 0 10px;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .level:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+        }
+
+        .beginner:after {
+            background: linear-gradient(to right, #2ecc71, #3498db);
+        }
+
+        .intermediate:after {
+            background: linear-gradient(to right, #3498db, #9b59b6);
+        }
+
+        .advanced:after {
+            background: linear-gradient(to right, #9b59b6, #e74c3c);
+        }
+
+        .level h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .level p {
+            font-size: 0.9rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-table th {
+            background: rgba(52, 152, 219, 0.2);
+            font-weight: 600;
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, #3498db, #2ecc71);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: #333;
+                padding: 0;
+            }
+
+            .presentation-container {
+                box-shadow: none;
+                background: white;
+                border: none;
+            }
+
+            .header, .content-section, .footer {
+                background: white;
+                color: #333;
+            }
+
+            h1 {
+                -webkit-text-fill-color: #2c3e50;
+                text-shadow: none;
+            }
+
+            .card {
+                background: #f9f9f9;
+                border: 1px solid #ddd;
+            }
+
+            .code-block {
+                background: #f5f5f5;
+                border-left: 4px solid #3498db;
+            }
+
+            .level {
+                background: #f0f0f0;
+            }
+
+            .comparison-table {
+                background: white;
+            }
+
+            .btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="header">
+            <h1>HTML: From Zero to Advanced</h1>
+            <p class="subtitle">A Comprehensive Guide to Mastering HyperText Markup Language</p>
+            <p class="author">By Prince Tiwari | August 2023</p>
+            <a href="#" class="btn" onclick="window.print()"><i class="fas fa-download"></i> Save as PDF</a>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-info-circle"></i> Introduction to HTML</h2>
+            <div class="card">
+                <p>HTML (HyperText Markup Language) is the foundational language of the web. It provides the structure for web pages through a system of tags and attributes. This guide will take you from complete beginner to advanced HTML developer.</p>
+
+                <div class="content-grid">
+                    <div>
+                        <h3 class="card-title"><i class="fas fa-check-circle"></i> What You'll Learn</h3>
+                        <ul>
+                            <li>HTML document structure and syntax</li>
+                            <li>Semantic HTML for accessibility and SEO</li>
+                            <li>Forms, tables, and multimedia elements</li>
+                            <li>Advanced APIs and web components</li>
+                            <li>Best practices and modern techniques</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="card-title"><i class="fas fa-lightbulb"></i> Why Learn HTML?</h3>
+                        <ul>
+                            <li>Essential for all web development</li>
+                            <li>Improves accessibility for all users</li>
+                            <li>Critical for search engine optimization</li>
+                            <li>Foundation for CSS and JavaScript</li>
+                            <li>Universal browser support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="level-indicator">
+                <div class="level beginner">
+                    <h3>Beginner Level</h3>
+                    <p>HTML Fundamentals</p>
+                </div>
+                <div class="level intermediate">
+                    <h3>Intermediate Level</h3>
+                    <p>Structured HTML</p>
+                </div>
+                <div class="level advanced">
+                    <h3>Advanced Level</h3>
+                    <p>Modern APIs & Components</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-book"></i> Beginner Level: HTML Fundamentals</h2>
+
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-code"></i> Basic Document Structure</h3>
+                <p>Every HTML document has a standard structure:</p>
+
+                <div class="code-block">
+                    <span><span class="tag">&lt;!DOCTYPE html&gt;</span> <span class="comment">&lt;!-- Document type declaration --&gt;</span></span>
+                    <span><span class="tag">&lt;html&gt;</span> <span class="comment">&lt;!-- Root element --&gt;</span></span>
+                    <span><span class="tag">&lt;head&gt;</span> <span class="comment">&lt;!-- Metadata container --&gt;</span></span>
+                    <span>&nbsp;&nbsp;<span class="tag">&lt;title&gt;</span>Page Title<span class="tag">&lt;/title&gt;</span> <span class="comment">&lt;!-- Browser tab title --&gt;</span></span>
+                    <span><span class="tag">&lt;/head&gt;</span></span>
+                    <span><span class="tag">&lt;body&gt;</span> <span class="comment">&lt;!-- Visible content --&gt;</span></span>
+                    <span>&nbsp;&nbsp;<span class="tag">&lt;h1&gt;</span>My First Heading<span class="tag">&lt;/h1&gt;</span></span>
+                    <span>&nbsp;&nbsp;<span class="tag">&lt;p&gt;</span>My first paragraph.<span class="tag">&lt;/p&gt;</span></span>
+                    <span><span class="tag">&lt;/body&gt;</span></span>
+                    <span><span class="tag">&lt;/html&gt;</span></span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-cubes"></i> Core Elements</h3>
+
+                <div class="content-grid">
+                    <div>
+                        <h4>Text Elements</h4>
+                        <ul>
+                            <li>Headings: &lt;h1&gt; to &lt;h6&gt;</li>
+                            <li>Paragraphs: &lt;p&gt;</li>
+                            <li>Text formatting: &lt;strong&gt;, &lt;em&gt;</li>
+                            <li>Lists: &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</li>
+                            <li>Links: &lt;a href="..."&gt;</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4>Media Elements</h4>
+                        <ul>
+                            <li>Images: &lt;img src="..." alt="..."&gt;</li>
+                            <li>Audio: &lt;audio controls&gt;</li>
+                            <li>Video: &lt;video controls&gt;</li>
+                            <li>Embed: &lt;embed&gt;, &lt;iframe&gt;</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4>Structural Elements</h4>
+                        <ul>
+                            <li>Divisions: &lt;div&gt;</li>
+                            <li>Spans: &lt;span&gt;</li>
+                            <li>Line breaks: &lt;br&gt;</li>
+                            <li>Horizontal rules: &lt;hr&gt;</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-layer-group"></i> Intermediate Level: Structured HTML</h2>
+
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-sitemap"></i> Semantic HTML</h3>
+                <p>Semantic elements clearly describe their meaning to both browser and developer:</p>
+
+                <table class="comparison-table">
+                    <tr>
+                        <th>Semantic Tag</th>
+                        <th>Non-Semantic Equivalent</th>
+                        <th>Purpose</th>
+                    </tr>
+                    <tr>
+                        <td>&lt;header&gt;</td>
+                        <td>&lt;div id="header"&gt;</td>
+                        <td>Introductory content or navigation</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;nav&gt;</td>
+                        <td>&lt;div class="nav"&gt;</td>
+                        <td>Navigation links</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;main&gt;</td>
+                        <td>&lt;div id="main"&gt;</td>
+                        <td>Primary content of the document</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;section&gt;</td>
+                        <td>&lt;div class="section"&gt;</td>
+                        <td>Thematic grouping of content</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;article&gt;</td>
+                        <td>&lt;div class="article"&gt;</td>
+                        <td>Self-contained composition</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;aside&gt;</td>
+                        <td>&lt;div class="sidebar"&gt;</td>
+                        <td>Content indirectly related to main content</td>
+                    </tr>
+                    <tr>
+                        <td>&lt;footer&gt;</td>
+                        <td>&lt;div id="footer"&gt;</td>
+                        <td>Footer for its nearest section</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-table"></i> Forms and Tables</h3>
+
+                <div class="content-grid">
+                    <div>
+                        <h4>Form Elements</h4>
+                        <ul>
+                            <li>&lt;form&gt; - Container for form elements</li>
+                            <li>&lt;input&gt; - Various input types</li>
+                            <li>&lt;textarea&gt; - Multi-line text input</li>
+                            <li>&lt;select&gt; - Dropdown list</li>
+                            <li>&lt;button&gt; - Clickable button</li>
+                            <li>&lt;label&gt; - Label for form controls</li>
+                        </ul>
+
+                        <h4>Input Types</h4>
+                        <ul>
+                            <li>text, password, email, url</li>
+                            <li>number, range, date, time</li>
+                            <li>checkbox, radio, file</li>
+                            <li>submit, reset, button</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4>Table Structure</h4>
+                        <div class="code-block">
+                            <span><span class="tag">&lt;table&gt;</span></span>
+                            <span>&nbsp;&nbsp;<span class="tag">&lt;caption&gt;</span>Table Title<span class="tag">&lt;/caption&gt;</span></span>
+                            <span>&nbsp;&nbsp;<span class="tag">&lt;thead&gt;</span></span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;tr&gt;</span></span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;th&gt;</span>Header 1<span class="tag">&lt;/th&gt;</span></span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;th&gt;</span>Header 2<span class="tag">&lt;/th&gt;</span></span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/tr&gt;</span></span>
+                            <span>&nbsp;&nbsp;<span class="tag">&lt;/thead&gt;</span></span>
+                            <span>&nbsp;&nbsp;<span class="tag">&lt;tbody&gt;</span></span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;tr&gt;</span></span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;td&gt;</span>Data 1<span class="tag">&lt;/td&gt;</span></span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;td&gt;</span>Data 2<span class="tag">&lt;/td&gt;</span></span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;/tr&gt;</span></span>
+                            <span>&nbsp;&nbsp;<span class="tag">&lt;/tbody&gt;</span></span>
+                            <span><span class="tag">&lt;/table&gt;</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-rocket"></i> Advanced Level: Modern APIs & Components</h2>
+
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-puzzle-piece"></i> Web Components</h3>
+                <p>Web Components are a set of web platform APIs that allow you to create new custom, reusable, encapsulated HTML tags.</p>
+
+                <div class="content-grid">
+                    <div>
+                        <h4>Custom Elements</h4>
+                        <div class="code-block">
+                            <span><span class="comment">&lt;!-- Define custom element --&gt;</span></span>
+                            <span><span class="tag">&lt;script&gt;</span></span>
+                            <span>class UserCard extends HTMLElement {</span>
+                            <span>&nbsp;&nbsp;constructor() {</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;super();</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;this.innerHTML = `</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="user-card"&gt;</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;${this.getAttribute('name')}&lt;/h2&gt;</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;${this.getAttribute('title')}&lt;/p&gt;</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;`;</span>
+                            <span>&nbsp;&nbsp;}</span>
+                            <span>}</span>
+                            <span>customElements.define('user-card', UserCard);</span>
+                            <span><span class="tag">&lt;/script&gt;</span></span>
+                            <br>
+                            <span><span class="comment">&lt;!-- Use custom element --&gt;</span></span>
+                            <span><span class="tag">&lt;user-card</span></span>
+                            <span>&nbsp;&nbsp;<span class="attr">name=</span><span class="value">"Jane Smith"</span></span>
+                            <span>&nbsp;&nbsp;<span class="attr">title=</span><span class="value">"Web Developer"</span></span>
+                            <span><span class="tag">&gt;&lt;/user-card&gt;</span></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4>Shadow DOM</h4>
+                        <p>Provides encapsulation by separating the DOM of a component from the main document DOM:</p>
+                        <div class="code-block">
+                            <span>const shadow = this.attachShadow({mode: 'open'});</span>
+                            <span>const style = document.createElement('style');</span>
+                            <span>style.textContent = `</span>
+                            <span>&nbsp;&nbsp;.card {</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;padding: 20px;</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;border: 1px solid #ccc;</span>
+                            <span>&nbsp;&nbsp;}</span>
+                            <span>`;</span>
+                            <span>shadow.appendChild(style);</span>
+                            <span>shadow.appendChild(cardContent);</span>
+                        </div>
+
+                        <h4>HTML Templates</h4>
+                        <div class="code-block">
+                            <span><span class="tag">&lt;template</span> <span class="attr">id=</span><span class="value">"userTemplate"</span><span class="tag">&gt;</span></span>
+                            <span>&nbsp;&nbsp;&lt;div class="user"&gt;</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src="" alt="User avatar"&gt;</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="name"&gt;&lt;/div&gt;</span>
+                            <span>&nbsp;&nbsp;&lt;/div&gt;</span>
+                            <span><span class="tag">&lt;/template&gt;</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-microchip"></i> Modern APIs</h3>
+
+                <div class="content-grid">
+                    <div>
+                        <h4>Geolocation API</h4>
+                        <div class="code-block">
+                            <span>navigator.geolocation.getCurrentPosition(</span>
+                            <span>&nbsp;&nbsp;(position) => {</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;const lat = position.coords.latitude;</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;const lon = position.coords.longitude;</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;console.log(`Latitude: ${lat}, Longitude: ${lon}`);</span>
+                            <span>&nbsp;&nbsp;},</span>
+                            <span>&nbsp;&nbsp;(error) => {</span>
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;console.error("Error getting location", error);</span>
+                            <span>&nbsp;&nbsp;}</span>
+                            <span>);</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4>Web Storage API</h4>
+                        <div class="code-block">
+                            <span><span class="comment">// Save data to localStorage</span></span>
+                            <span>localStorage.setItem('username', 'john_doe');</span>
+                            <br>
+                            <span><span class="comment">// Retrieve data</span></span>
+                            <span>const user = localStorage.getItem('username');</span>
+                            <br>
+                            <span><span class="comment">// Save session data</span></span>
+                            <span>sessionStorage.setItem('sessionToken', 'abc123');</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4>Web Workers</h4>
+                        <div class="code-block">
+                            <span><span class="comment">// Main script</span></span>
+                            <span>const worker = new Worker('worker.js');</span>
+                            <span>worker.postMessage('Start processing');</span>
+                            <span>worker.onmessage = (e) => {</span>
+                            <span>&nbsp;&nbsp;console.log('Message from worker:', e.data);</span>
+                            <span>};</span>
+                            <br>
+                            <span><span class="comment">// worker.js</span></span>
+                            <span>self.onmessage = (e) => {</span>
+                            <span>&nbsp;&nbsp;<span class="comment">// Heavy processing</span></span>
+                            <span>&nbsp;&nbsp;const result = doHeavyWork();</span>
+                            <span>&nbsp;&nbsp;self.postMessage(result);</span>
+                            <span>};</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Conclusion</h2>
+
+            <div class="card">
+                <h3 class="card-title"><i class="fas fa-check-double"></i> HTML Mastery Path</h3>
+
+                <div class="content-grid">
+                    <div>
+                        <h4>Best Practices</h4>
+                        <ul>
+                            <li>Always use semantic HTML</li>
+                            <li>Validate your HTML regularly</li>
+                            <li>Ensure accessibility (a11y)</li>
+                            <li>Optimize for performance</li>
+                            <li>Follow responsive design principles</li>
+                            <li>Use comments for complex sections</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4>Next Steps</h4>
+                        <ul>
+                            <li>Master CSS for styling</li>
+                            <li>Learn JavaScript for interactivity</li>
+                            <li>Study responsive design techniques</li>
+                            <li>Explore frontend frameworks</li>
+                            <li>Practice accessibility standards</li>
+                            <li>Learn server-side technologies</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <h3>HTML is the foundation of the web. Build it strong!</h3>
+                    <p style="margin-top: 15px; font-size: 1.1rem;">"The only way to learn a new programming language is by writing programs in it." - Dennis Ritchie</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2023 Web Development Institute | HTML Mastery Guide</p>
+            <p>For educational purposes only | www.webdev-institute.org</p>
+        </div>
+    </div>
+
+    <script>
+        // Simple script to handle the print functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add a print button event listener
+            const printBtn = document.querySelector('.btn');
+            printBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.print();
+            });
+
+            // Add a subtle animation to cards when they come into view
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 200 * index);
+
+                // Initial state
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s, transform 0.5s';
+            });
+        });
+    </script>
+</body>
+</html>
